@@ -1,12 +1,13 @@
-# ctrlx_docker_ignition
-Build code for packaging ignition edge for CtrlX Core
+# ctrlx-docker-ignition
 
-# Default settings
-Username and password can be modified in the docker-compose.yml. The default is username is admin and default password is password.
-Ports 9088 and 9043 are used for Ignition web interface.
+Author: samuel.gilk@boschrexroth-us.com
 
-# Notes
-Follow the instructions from the ctrlX Automation SDK manual for setting up the build environment
-Tested on amd64 with the ctrlX Core X7 running the Container Engine app.
+Description: Provides Inductive Automation Ignition to ctrlX Container Engine.
 
-Requires core22 system app loaded on the Core.
+Instructions:
+
+1. Install docker and configure buildx
+2. Run build_all.sh, passing target architecture as an argument (Ex. ./build_all.sh "arm64")
+3. Install Container Engine app on ctrlX CORE or ctrlX CORE Virtual
+4. Install built ctrlx-docker-ignition snap on ctrlX CORE or ctrlX CORE Virtual
+5. Make sure port forwarding is enabled on ctrlX CORE network adapter to access the broker externally

@@ -1,0 +1,27 @@
+services:
+    ignition:
+        image: ${IMAGE_NAME}:${IMAGE_TAG}
+        container_name: ignition
+        ports:
+            - 9088:8088
+            - 9043:8043
+        volumes:
+            - ignition_data:/usr/local/bin/ignition/data:rw
+        command: 
+            -n ctrlx-ignition 
+            -a localhost 
+            -h 9088 
+            -s 9043
+        environment: 
+            - ACCEPT_IGNITION_EULA=Y
+            - GATEWAY_ADMIN_USERNAME=admin
+            - GATEWAY_ADMIN_PASSWORD=password
+            - IGNITION_EDITION=edge
+        restart: on-failure
+volumes:
+    ignition_data:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: ${SNAP_DATA}/docker-volumes/ctrlx-docker-ignition
